@@ -1,3 +1,4 @@
+using ChallengeIntuit.Services;
 using Data;
 
 namespace Api
@@ -10,6 +11,8 @@ namespace Api
             var builder = WebApplication.CreateBuilder(args);
             ApplicationDbContext.ConnectionString = builder.Configuration.GetConnectionString("IntuitChallege");
             // Add services to the container.
+
+            builder.Services.AddScoped<ClientsService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

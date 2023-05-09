@@ -1,5 +1,5 @@
 ﻿using Data.Entities;
-using Data.Repository;
+using Data.Repository.Clients;
 
 namespace ChallengeIntuit.Services
 {
@@ -12,7 +12,7 @@ namespace ChallengeIntuit.Services
             _repository = repository;
         }
 
-        public async List<ClientsEntity> GetAll()
+        public async Task<List<ClientsEntity>> GetAll()
         {
             return await _repository.GetAll();
         }

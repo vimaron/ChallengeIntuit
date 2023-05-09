@@ -1,11 +1,12 @@
 ﻿using ChallengeIntuit.Services;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChallengeIntuit.Controllers
 {
+    [Route("api")]
     [ApiController]
-    [Route("client")]
     public class ClientController : ControllerBase
     {
 
@@ -20,7 +21,7 @@ namespace ChallengeIntuit.Controllers
         [Route("clients")]
         public async Task<List<ClientsEntity>> GetAll()
         {
-            return _service.GetAll();
+            return await _service.GetAll();
         }
     }
 }
