@@ -8,9 +8,19 @@ namespace Api
     {
         public static void Main(string[] args)
         {
+            var MyAllowSpecificOrigin = "";
             var builder = WebApplication.CreateBuilder(args);
             ApplicationDbContext.ConnectionString = builder.Configuration.GetConnectionString("IntuitChallege");
             // Add services to the container.
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigin,
+                    options =>
+                    {
+                        options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+                    });
+            });
 
             builder.Services.AddScoped<ClientsService>();
 
@@ -37,6 +47,8 @@ namespace Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors(MyAllowSpecificOrigin);
 
             app.MapControllers();
 
