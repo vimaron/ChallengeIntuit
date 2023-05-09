@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChallengeIntuit.Services;
+using Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChallengeIntuit.Controllers
 {
@@ -6,8 +8,19 @@ namespace ChallengeIntuit.Controllers
     [Route("client")]
     public class ClientController : ControllerBase
     {
-        //[HttpGet]
-        //[Route("get")]
-        
+
+        private readonly ClientsService _service;
+
+        public ClientController(ClientsService service)
+        {
+            _service = service;
+        }
+
+        [HttpGet]
+        [Route("clients")]
+        public async Task<ClientsEntity> GetAll()
+        {
+            return _service.GetAll();
+        }
     }
 }
