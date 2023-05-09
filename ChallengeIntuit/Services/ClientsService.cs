@@ -1,10 +1,20 @@
-﻿namespace ChallengeIntuit.Services
+﻿using Data.Entities;
+using Data.Repository;
+
+namespace ChallengeIntuit.Services
 {
     public class ClientsService
     {
-        private readonly HttpClient _httpClient;
-        private readonly ILogger<ClientsService> _logger;
-        private readonly IConfiguration _configuration;
+        private readonly ClientsRepository _repository;
 
+        public ClientsService(ClientsRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async List<ClientsEntity> GetAll()
+        {
+            return await _repository.GetAll();
+        }
     }
 }
