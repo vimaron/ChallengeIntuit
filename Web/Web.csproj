@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Middleware\" />
-    <Folder Include="Services\" />
+    <Folder Include="Views\Logging\" />
+    <Folder Include="Views\Services\" />
   </ItemGroup>
 
 </Project>
