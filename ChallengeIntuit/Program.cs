@@ -1,5 +1,6 @@
 using ChallengeIntuit.Services;
 using Data;
+using Data.Repository;
 
 namespace Api
 {
@@ -7,14 +8,16 @@ namespace Api
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
             ApplicationDbContext.ConnectionString = builder.Configuration.GetConnectionString("IntuitChallege");
             // Add services to the container.
 
             builder.Services.AddScoped<ClientsService>();
 
+            builder.Services.AddScoped(typeof(ClientsRepository));
+
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Data.Repository;
 using Data.Repository.Clients;
 
 namespace ChallengeIntuit.Services

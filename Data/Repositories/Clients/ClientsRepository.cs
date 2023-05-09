@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Data.Repository.Clients;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Repository.Clients
+namespace Data.Repository
 {
     public class ClientsRepository : IClientsRepository
     {
@@ -16,7 +17,7 @@ namespace Data.Repository.Clients
         {
             get
             {
-                if (_context == null)
+                if(_context == null)
                 {
                     _context = new ApplicationDbContext();
                 }

@@ -19,9 +19,9 @@ namespace ChallengeIntuit.Controllers
 
         [HttpGet]
         [Route("clients")]
-        public async Task<List<ClientsEntity>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await _service.GetAll();
+            return Ok(await _service.GetAll());
         }
     }
 }
