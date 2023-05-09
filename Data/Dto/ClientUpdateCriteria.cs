@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Data.Dto
 {
-    public class ClientCreateCriteria
-    { 
+    public class ClientUpdateCriteria
+    {
+        [Required]
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -16,7 +19,6 @@ namespace Data.Dto
         [Required]
         public string CUIT { get; set; }
         public string Address { get; set; }
-        [Required]
         public string PhoneNumber { get; set; }
         [Required]
         public string Mail { get; set; }

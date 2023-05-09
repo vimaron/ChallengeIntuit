@@ -1,8 +1,6 @@
 ﻿using ChallengeIntuit.Services;
 using Data.Dto;
-using Data.Entities;
 using Data.Exceptions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -47,8 +45,8 @@ namespace ChallengeIntuit.Controllers
         }
 
         [HttpPost]
-        [Route("client")]
-        public async Task<IActionResult> Create([FromBody, Required]  ClientCreateCriteria request)
+        [Route("clients")]
+        public async Task<IActionResult> Create([FromBody, Required] ClientCreateCriteria request)
         {
 
             try
@@ -71,6 +69,30 @@ namespace ChallengeIntuit.Controllers
                 return BadRequest(ModelState);
             }
            
+        }
+
+        [HttpPatch]
+        [Route("clients")]
+        public async Task<IActionResult> Update([FromBody, Required] ClientUpdateCriteria request)
+        {
+            try
+            {
+                await _service.Update(
+                    request
+                    );
+                return Ok();
+            }
+            catch (ClientAlreadyExistsException ex)
+            {
+                _log.LogError(ex, "Error Log: {ex.Message}", ex.Message);
+                ModelState.AddModelError("Name", ex.Message);
+                return BadRequest(ModelState);
+            }
+            catch (ClientNotFoundException)
+            {
+                ModelState.AddModelError("Id", "Does Not exists!");
+                return BadRequest(ModelState);
+            }
         }
     }
 }

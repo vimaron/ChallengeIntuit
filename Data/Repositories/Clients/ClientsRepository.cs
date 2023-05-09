@@ -46,6 +46,11 @@ namespace Data.Repository
             return newEntity.Entity;
         }
 
+        public void Update(ClientsEntity obj)
+        {
+            contextSingleton.Clients.Update(obj);
+        }
+
         public async Task SaveChanges()
         {
             await contextSingleton.SaveChangesAsync();
